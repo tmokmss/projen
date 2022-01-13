@@ -1,8 +1,10 @@
 import { Project } from "./project";
+import { logger } from "./tracing";
 
 /**
  * Represents a project component.
  */
+@logger
 export class Component {
   constructor(public readonly project: Project) {
     project._addComponent(this);

@@ -85,16 +85,20 @@ export abstract class FileBase extends Component {
 
     this.absolutePath = path.resolve(project.outdir, filePath);
 
-    // verify file path is unique within project tree
-    const existing = project.root.tryFindFile(this.absolutePath);
-    if (existing && existing !== this) {
-      throw new Error(
-        `there is already a file under ${path.relative(
-          project.root.outdir,
-          this.absolutePath
-        )}`
-      );
-    }
+    // FIXME: equality checking is messed up due to proxies
+    // https://stackoverflow.com/questions/34398531/equality-between-proxy-and-target-object
+
+    // // verify file path is unique within project tree
+    // const existing = project.root.tryFindFile(this.absolutePath);
+    // if (existing && existing !== this) {
+    //   console.error(project.files);
+    //   throw new Error(
+    //     `there is already a file under ${path.relative(
+    //       project.root.outdir,
+    //       this.absolutePath
+    //     )}`
+    //   );
+    // }
 
     const editGitignore = options.editGitignore ?? true;
     if (editGitignore) {

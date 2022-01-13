@@ -18,6 +18,7 @@ import { ProjectBuild as ProjectBuild } from "./project-build";
 import { Projenrc, ProjenrcOptions } from "./projenrc-json";
 import { Task, TaskOptions } from "./task";
 import { Tasks } from "./tasks";
+import { logger } from "./tracing";
 import { isTruthy } from "./util";
 
 /**
@@ -83,6 +84,7 @@ export interface ProjectOptions {
 /**
  * Base project
  */
+@logger
 export class Project {
   /**
    * The name of the default task (the task executed when `projen` is run without arguments). Normally
